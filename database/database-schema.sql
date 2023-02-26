@@ -36,3 +36,29 @@ CREATE TABLE users(
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_type_id) REFERENCES user_types(user_type_id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS Artists;
+CREATE TABLE Artists(
+artist_id int AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+genre VARCHAR(50) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS Albums;
+CREATE TABLE Albums (
+artist_id INT NOT NULL,
+album_id int AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+year VARCHAR(50) NOT NULL,
+FOREIGN KEY (artist_id) REFERENCES Artists(artist_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS Songs;
+CREATE TABLE Songs (
+  artist_id INT NOT NULL,
+  album_id  INT NOT NULL,
+  song_id int AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  FOREIGN KEY(artist_id) REFERENCES Artists(artist_id),
+  FOREIGN KEY(album_id) REFERENCES Albums(album_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;

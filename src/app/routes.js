@@ -9,6 +9,9 @@ const getUserTypes = require("./controllers/users/userTypes");
 const { ADMIN } = require("~root/constants/userTypes");
 const postArtist = require("./controllers/users/Artists/postArtist");
 const patchArtistById = require("./controllers/users/Artists/patchArtistById" );
+const getAllArtists = require("./controllers/users/Artists/getAllArtists");
+const deleteArtistById = require("./controllers/users/Artists/deleteArtistById");
+const getArtistById = require("./controllers/users/Artists/getArtistById")
 
 
 const router = express.Router();
@@ -29,4 +32,9 @@ router.post("/artists", postArtist);
 
 router.patch("/artist/:artistId", patchArtistById);
 
+router.get("/artists", getAllArtists);
+
+router.delete("/artists/:artistID", deleteArtistById);
+
+router.get("/artists/:artistID", getArtistById);
 module.exports = router;
